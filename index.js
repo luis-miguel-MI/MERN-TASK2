@@ -24,7 +24,7 @@ app.use(express.json({extend : true}));
 //Asignacion de un puerto al servidor
 //Es importante nombrarlo port por temas de despliegue
 //Puerto de la app
-const PORT = process.env.PORT || 4000;
+const port = process.env.PORT || 4000;
 
 //Importar rutas
 app.use('/api/usuarios', require('./Routes/usuarios'));
@@ -39,6 +39,6 @@ app.get('/', (req,res)=>{
 });
 
 //Iniciar el servidor 
-app.listen(PORT, ()=> {
-    console.log (`El servidor esta funcionando en el puerto: ${PORT}`)
+app.listen(port,'0.0.0.0', ()=> {
+    console.log (`El servidor esta funcionando en el puerto: ${port}`)
 })
