@@ -38,6 +38,7 @@ exports.autenticarUsuario =async(req,res)=>{
         }, (error,token)=> {
             if (error) throw error;
 
+            console.log(`User ${email} login successfull`);
             res.json ({token});
         });
 
