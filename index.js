@@ -24,7 +24,7 @@ app.use(express.json({extend : true}));
 //Asignacion de un puerto al servidor
 //Es importante nombrarlo port por temas de despliegue
 //Puerto de la app
-const port = process.env.PORT || 4000;
+const port = process.env.port || 4000;
 
 //Importar rutas
 app.use('/api/usuarios', require('./Routes/usuarios'));
@@ -35,7 +35,7 @@ app.use('/api/tareas',require('./Routes/tareas'));
 
 //Deficion de la pagina principal 
 app.get('/', (req,res)=>{
-    res.send('HOLA MUNDOv3');
+    res.send('HOLA MUNDOv4');
 });
 
 //Iniciar el servidor 
