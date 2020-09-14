@@ -11,14 +11,11 @@ const cors = require ('cors');
 //Creacion del servidor de express
 const app = express();
 
-//Habilitar Cors
-app.use(cors());
-
-app.all('/', function(req, res, next) {
+/* app.all('/', function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "X-Requested-With");
     next();
-   });
+   }); */
 
 //Concetar a la base de datos 
 conectarDB();
@@ -26,6 +23,10 @@ conectarDB();
 //Habilitar express.json, el cual nos permite leer datos que los usuarios ingresen
 app.use(express.json({extend : true}));
 //Otra ocion es usar Bodyparser
+
+
+//Habilitar Cors
+app.use(cors());
 
 //Asignacion de un puerto al servidor
 //Es importante nombrarlo port por temas de despliegue
