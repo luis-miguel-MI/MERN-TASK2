@@ -15,15 +15,15 @@ const app = express();
 conectarDB();
 
 //Habilitar Cors
-/* app.use(cors()); */
+app.use(cors());
 
-app.use(function(req, res, next) {
+/* app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", '*');
     res.header("Access-Control-Allow-Credentials", true);
     res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
     res.header("Access-Control-Allow-Headers", 'Origin,X-Requested-With,Content-Type,Accept,content-type,application/json');
     next();
-});
+}); */
 
 //Habilitar express.json, el cual nos permite leer datos que los usuarios ingresen
 app.use(express.json({extend : true}));
@@ -43,7 +43,7 @@ app.use('/api/tareas',require('./Routes/tareas'));
 
 //Deficion de la pagina principal 
 app.get('/', (req,res)=>{
-    res.send('HOLA MUNDOv6');
+    res.send('HOLA MUNDOv7');
 });
 
 //Iniciar el servidor 
