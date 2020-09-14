@@ -24,7 +24,7 @@ app.use(express.json({extend : true}));
 //Asignacion de un puerto al servidor
 //Es importante nombrarlo port por temas de despliegue
 //Puerto de la app
-const port = process.env.port || 4000;
+const port = process.env.PORT || 4000;
 
 //Importar rutas
 app.use('/api/usuarios', require('./Routes/usuarios'));
