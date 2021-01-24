@@ -3,13 +3,14 @@
 //Importar el modelo del usuario
 const Usuario =require ('../models/Usuario');
 
-//Importar la libreria para hacer un hash de la contraseña y no mostrarla en 
-//texto plano, se uso npm install bcryptjs
+// npm install bcryptjs
 const bcryptjs = require ('bcryptjs');
 
 const {validationResult}=require('express-validator');
 
 const jwt = require('jsonwebtoken');
+
+
 
 exports.crearUsuario = async(req,res) =>{
 
@@ -20,13 +21,18 @@ exports.crearUsuario = async(req,res) =>{
     }
 
     //Extraer Email y password
-    const {email, password} = req.body;
+    const {email, password,rfc} = req.body;
 
     try {
         let usuario = await Usuario.findOne({email});
+        let rfcUsuario = await Usuario.findOne({rfc});
 
         if (usuario) {
-            return res.status(400).json({msg: 'El usuario ya existe'});
+            return res.status(400).json({msg: 'El correo ya existe'});
+        }
+
+        if (rfcUsuario) {
+            return res.status(400).json({msg: 'El RFC ya existe'});
         }
 
         //Crea el nuevo usuario
@@ -57,5 +63,25 @@ exports.crearUsuario = async(req,res) =>{
         
         console.log (error);
         res.status(400).send('Algo salio mal :c');
+    }
+}
+
+exports.obtenerUsuarios = async (req,res)=>{
+    
+    const usuario = await Usuario.findOne({ _id : req.usuario.id })
+    //console.log (usuario)
+    try {
+        if (usuario.admin){
+            const usuarios = await Usuario.find().sort({nombre:-1});    
+            //console.log ("ADMINISTRADOR SOLICITANDO TODAS LAS DECLARACIONES");
+            res.json({usuarios})
+        }
+        else {
+            return res.status(401).json({msg:'No authorizado'})
+        }
+
+    } catch (error) {
+        console.log(error);
+        res.status(500).send('Hubo un error');
     }
 }

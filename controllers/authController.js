@@ -27,7 +27,7 @@ exports.autenticarUsuario =async(req,res)=>{
             return res.status(400).json({msg: 'La contraseña es incorrecta'});
         }
 
-        //Al tener exito en las 2 verificaciones anteriores generar el JWT
+        
         //Creat y firmar el JWT
         const payload = {
             usuario: {id:usuario.id}

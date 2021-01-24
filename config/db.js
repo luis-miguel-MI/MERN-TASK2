@@ -12,11 +12,11 @@ const conectarDB = async() =>{
             useUnifiedTopology:true,
             useFindAndModify: false
         })
-        console.log('Base de datos conectada')
+        console.log('Base de datos cca conectada')
     } catch (error) {
         console.log(erro);
         process.exit(1);
     }
 }
 
-module.exports = conectarDB; //Es el expor default de JS
+module.exports = conectarDB; 

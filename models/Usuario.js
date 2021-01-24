@@ -14,6 +14,12 @@ const UsuarioSchema = mongoose.Schema ({
         trim: true,
         unique: true
     },
+    rfc : {
+        type: String,
+        required: true,
+        trim: true,
+        unique: true
+    },
     password : {
         type: String,
         required: true,
@@ -22,10 +28,12 @@ const UsuarioSchema = mongoose.Schema ({
     registro : {
         type:Date,
         default :Date.now()
+    },
+    admin : { 
+        type : Boolean,
+        default : false
     }
 });
 
-
-//Se puede revisar los tipos de datos que soporta mongoose
 
 module.exports = mongoose.model('Usuario',UsuarioSchema);
